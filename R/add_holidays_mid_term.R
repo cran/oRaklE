@@ -35,7 +35,7 @@ add_holidays_mid_term <- function(midterm_data) {
         return(oRaklE::example_midterm_demand_data)
       }
     } else {
-      stop()
+      stop("The example in add_holidays_mid_term() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
     }
   }
   midterm <- midterm_data
@@ -56,7 +56,9 @@ add_holidays_mid_term <- function(midterm_data) {
         holiday_list[[i]] <- response$date
       },
       error = function(e) {
-        stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
+        i=i-1
+        Sys.sleep(5)
+        #stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
       }
     )
   }

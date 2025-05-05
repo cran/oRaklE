@@ -67,7 +67,7 @@ combine_models <- function(longterm_predictions, midterm_predictions, shortterm_
       if (eval_sum < 1) {
         return(oRaklE::example_full_model_predictions)
       } else {
-        stop()
+        stop("The example in combine_models() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
       }
     }
   }

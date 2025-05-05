@@ -60,7 +60,7 @@ short_term_future <- function(shortterm_predictions, end_year, data_directory = 
       if (test_sum < 1) {
         return(oRaklE::example_shortterm_future_predictions)
       } else {
-        stop()
+        stop("The example in short_term_future() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
       }
     }
   }
@@ -149,7 +149,9 @@ short_term_future <- function(shortterm_predictions, end_year, data_directory = 
         ))
       },
       error = function(e) {
-        stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
+        i=i-1
+        Sys.sleep(5)
+        #stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
       }
     )
     holiday_list[[i]] <- response$date

@@ -70,7 +70,7 @@ combine_models_future <- function(
       if (eval_sum < 1) {
         return(oRaklE::example_full_model_future_predictions)
       } else {
-        stop()
+        stop("The example in combine_models_future() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
       }
     }
   }

@@ -34,7 +34,7 @@ add_holidays_short_term <- function(shortterm) {
         return(oRaklE::example_shortterm_demand_data)
       }
     } else {
-      stop()
+      stop("The example in add_holidays_short_term() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
     }
   }
   years <- unique(shortterm$year)
@@ -52,7 +52,9 @@ add_holidays_short_term <- function(shortterm) {
         holiday_list[[i]] <- response$date
       },
       error = function(e) {
-        stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
+        i=i-1
+        Sys.sleep(5)
+        #stop("Error during JSON request to date.nager.at : ", e$message, call. = FALSE)
       }
     )
   }

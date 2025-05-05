@@ -59,11 +59,12 @@ mid_term_future <- function(midterm_predictions, end_year, Tref = 18, data_direc
       new_data <- oRaklE::example_midterm_future_predictions
       future_predictions <- stats::predict(best_model, newx = as.matrix(new_data[, 9:43]))
 
-      length(unique(future_predictions - new_data$midterm_model_fit))
-      if (length(unique(future_predictions - new_data$midterm_model_fit)) < 21) {
+      length(unique(round(future_predictions,2) - round(new_data$midterm_model_fit,2)))
+
+      if (length(unique(round(future_predictions,2) - round(new_data$midterm_model_fit,2))) < 21) {
         return(oRaklE::example_longterm_predictions)
       } else {
-        stop()
+        stop("The example in mid_term_future() failed. Please contact the package maintainer at schwenzer@europa-uni.de")
       }
     }
   }
@@ -140,7 +141,9 @@ mid_term_future <- function(midterm_predictions, end_year, Tref = 18, data_direc
         holiday_list[[i]] <- response$date
       },
       error = function(e) {
-        stop("Error during JSON request to date.nager.at for getting holidays : ", e$message, "\nPlease run the function again sometimes date.nager is unstable since of 2025.", call. = FALSE)
+        i=i-1
+        Sys.sleep(5)
+        #stop("Error during JSON request to date.nager.at for getting holidays : ", e$message, "\nPlease run the function again sometimes date.nager is unstable since of 2025.", call. = FALSE)
       }
     )
   }
